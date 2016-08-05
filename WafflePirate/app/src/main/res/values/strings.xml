@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Waffle Pirate</string>
+
+    <string name="title_activity_main">Waffle Pirate</string>
+    <string name="title_activity_driving">Driving Settings</string>
+    <string name="title_activity_calendar">Calendar Settings</string>
+</resources>

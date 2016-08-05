@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">My Frist App</string>
-
-    <string name="title_activity_main">Do Not Disturb</string>
-    <string name="title_activity_driving">Driving Settings</string>
-    <string name="title_activity_calendar">Calendar Settings</string>
-</resources>
