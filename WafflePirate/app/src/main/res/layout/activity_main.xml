@@ -14,11 +14,11 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="Driving Settings"
-        android:onClick="activityDriving" />
+        android:onClick="viewActivityDriving" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:text="Calendar Settings"
-        android:onClick="activityCalendar" />
+        android:onClick="viewActivityCalendar" />
 </LinearLayout>

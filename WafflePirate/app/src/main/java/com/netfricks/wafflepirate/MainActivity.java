@@ -13,12 +13,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void activityDriving(View view) {
+    public void viewActivityDriving(View view) {
         Intent intent = new Intent(this, DrivingActivity.class);
         startActivity(intent);
     }
 
-    public void activityCalendar(View view) {
+    public void viewActivityCalendar(View view) {
         Intent intent = new Intent(this, CalendarActivity.class);
         startActivity(intent);
     }
