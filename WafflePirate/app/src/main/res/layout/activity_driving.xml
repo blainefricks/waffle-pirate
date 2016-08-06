@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- TODO: Need layout for Driving Activity page -->
+<!-- TODO: On page load, if feature is enabled then check for missing permissions (BLUETOOTH, SMS). -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,5 +17,9 @@
         android:text="Turn on"
         android:layout_width="match_parent"
         android:layout_height="48dp" />
+    <!-- TODO: Switch_on will need to check to see if BLUETOOTH permissions are missing or not. -->
+    <!-- TODO: Switch_on will need to check to see if SMS permissions are missing or not. -->
+    <!-- TODO: Switch_on will display more options for driving feature. -->
+    <!-- TODO: Switch_off will hide more options for driving feature. -->
 
 </RelativeLayout>

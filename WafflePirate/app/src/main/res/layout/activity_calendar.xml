@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- TODO: Need layout for Calendar Activity page -->
+<!-- TODO: Need to figure out why the layout overlays elements on top of each other. -->
+<!-- TODO: On page load, if Switch_on check for missing permissions (CALENDAR). -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,5 +18,8 @@
         android:text="Turn on"
         android:layout_width="match_parent"
         android:layout_height="48dp" />
+    <!-- TODO: Switch_on will need to check to see if calendar permissions are missing or not. -->
+    <!-- TODO: Switch_on will display more options for calendar feature. -->
+    <!-- TODO: Switch_off will hide more options for calendar feature. -->
 
 </RelativeLayout>
