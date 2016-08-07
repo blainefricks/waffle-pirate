@@ -12,7 +12,8 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView mainListView;
+//    private ListView mainListView;
+//    private String[] mainOptions;
 
 
     @Override
@@ -20,16 +21,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainListView = (ListView) findViewById(R.id.mainListView);
+//        mainListView = (ListView) findViewById(R.id.mainListView);
 
-        String[] mainOptions = new String[] {"Driving Settings","Calendar Settings"};
+//        mainOptions = new String[] {"Driving Settings","Calendar Settings"};
 
-        ArrayList<String> mainOptionsList = new ArrayList<String>();
-        mainOptionsList.addAll(Arrays.asList(mainOptions));
+//        ArrayList<String> mainOptionsList = new ArrayList<String>();
+//        mainOptionsList.addAll(Arrays.asList(mainOptions));
 
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this, R.layout.list_item, mainOptionsList);
+//        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this, R.layout.list_item, mainOptionsList);
 
-        mainListView.setAdapter(listAdapter);
+//        mainListView.setAdapter(listAdapter);
     }
 
     public void viewActivityDriving(View view) {
