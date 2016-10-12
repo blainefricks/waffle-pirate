@@ -42,6 +42,10 @@
             android:label="@string/title_activity_calendar"
             android:parentActivityName=".MainActivity" />
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="dba1b8466f8ab1ae8567cda31cb574cb5b359a34" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
