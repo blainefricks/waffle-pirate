@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Preference File Keys-->
+    <string name="preference_file_key">com.netfricks.wafflepirate.PREFERENCE_FILE_KEY</string>
+    <integer name="saved_calendar_switch_state_default">0</integer>
+    <string name="saved_calendar_switch_state"></string>
+</resources>

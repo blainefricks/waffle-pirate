@@ -4,4 +4,8 @@
     <string name="title_activity_main">Waffle Pirate</string>
     <string name="title_activity_driving">Driving Settings</string>
     <string name="title_activity_calendar">Calendar Settings</string>
+
+    <!--Missing Permission Rationale Dialogs-->
+    <string name="dialog_message_READ_CALENDAR">Access to your calendar is required to know when you do not want to be disturbed.</string>
+    <string name="dialog_title_READ_CALENDAR">Missing Calendar Permission</string>
 </resources>

@@ -4,7 +4,7 @@
 <!-- TODO: Need to figure out why the layout overlays elements on top of each other. -->
 <!-- TODO: On page load, if Switch_on check for missing permissions (CALENDAR). -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,11 +15,16 @@
     tools:context="com.netfricks.wafflepirate.CalendarActivity">
 
     <Switch
+        android:id="@+id/switchActivityCalendar"
         android:text="Turn on"
         android:layout_width="match_parent"
         android:layout_height="48dp" />
-    <!-- TODO: Switch_on will need to check to see if calendar permissions are missing or not. -->
     <!-- TODO: Switch_on will display more options for calendar feature. -->
     <!-- TODO: Switch_off will hide more options for calendar feature. -->
 
-</RelativeLayout>
+    <!-- Options to show for calendar feature:
+         1) Calendar Select
+         2) Events marked busy or any
+         3) Message to send. (will require SEND_SMS permissions) -->
+
+</LinearLayout>
