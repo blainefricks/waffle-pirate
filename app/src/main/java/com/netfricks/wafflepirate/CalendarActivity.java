@@ -41,7 +41,7 @@ public class CalendarActivity extends AppCompatActivity {
         calendarActivitySwitch = (Switch) findViewById(R.id.switchActivityCalendar);
 
         if (switchState == 1) {
-            getPermissionToReadUserCalendar();
+            getPermissionToReadUserCalendar(Manifest.permission.READ_CALENDAR,1);
             calendarActivitySwitch.setChecked(true);
             // TODO: Show UI for Calendar DND Rules
 
@@ -52,7 +52,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (calendarActivitySwitch.isChecked()){
                     // Check for Calendar Permission
-                    getPermissionToReadUserCalendar();
+                    getPermissionToReadUserCalendar(Manifest.permission.READ_CALENDAR,1);
 
                     // Write to file
                     setCalendarActivitySwitchState(1);
@@ -71,13 +71,13 @@ public class CalendarActivity extends AppCompatActivity {
 
     private static final int READ_CALENDAR_PERMISSION_REQUEST = 1;
 
-    public void getPermissionToReadUserCalendar() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+    public void getPermissionToReadUserCalendar(final String permissionManifest, final int permissionRequest) {
+        if (ContextCompat.checkSelfPermission(this, permissionManifest) != PackageManager.PERMISSION_GRANTED) {
 
             // Check if the user has been asked about this permission already and denied
             // it. If so, we want to give more explanation about why the permission is needed.
 
-            if (shouldShowRequestPermissionRationale(Manifest.permission.READ_CALENDAR)){
+            if (shouldShowRequestPermissionRationale(permissionManifest)){
 
                 // Show UI to explain to the user why we need the calendar permission
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -86,8 +86,8 @@ public class CalendarActivity extends AppCompatActivity {
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked OK button
-                        requestPermissions(new String[]{Manifest.permission.READ_CALENDAR},
-                                READ_CALENDAR_PERMISSION_REQUEST);
+                        requestPermissions(new String[]{permissionManifest},
+                                permissionRequest);
                     }
                 });
                 AlertDialog dialog = builder.create();
