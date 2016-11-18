@@ -48,11 +48,12 @@ public class DrivingActivity extends AppCompatActivity {
         drivingActivitySwitch = (Switch) findViewById(R.id.switchActivityDriving);
 
         if (switchState == 1) {
-            getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
-
 
             drivingActivitySwitch.setChecked(true);
             if (HandleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
+
+                getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
+
                 // TODO: Show UI for Bluetooth Rules
             } else {
                 drivingActivitySwitch.setChecked(false);
@@ -65,7 +66,6 @@ public class DrivingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (drivingActivitySwitch.isChecked()){
                     // Check for Driving Permissions
-                    getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
 
 
                     // Write to file
@@ -73,6 +73,9 @@ public class DrivingActivity extends AppCompatActivity {
 
 
                     if (HandleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
+
+                        getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
+
                         // TODO: Show UI for Bluetooth Rules
                     } else {
                         drivingActivitySwitch.setChecked(false);
