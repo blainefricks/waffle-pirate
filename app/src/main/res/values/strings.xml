@@ -8,6 +8,6 @@
     <!--Missing Permission Rationale Dialogs-->
     <string name="dialog_message_READ_CALENDAR">Access to your calendar is required to know when you do not want to be disturbed.</string>
     <string name="dialog_title_READ_CALENDAR">Missing Calendar Permission</string>
-    <string name="dialog_message_BLUETOOTH">Access to your bluetooth devices is required to know when you are driving. Access to your Messages is required to let people know you are driving. Access to your Phone is required to know when someone calls while you are driving.</string>
-    <string name="dialog_title_BLUETOOTH">Missing Permissions</string>
+    <string name="dialog_message_DRIVING_PERMISSIONS">Access to your Messages is required to let people know you are driving. Access to your Phone is required to know when someone calls while you are driving.</string>
+    <string name="dialog_title_DRIVING_PERMISSIONS">Missing Permissions</string>
 </resources>

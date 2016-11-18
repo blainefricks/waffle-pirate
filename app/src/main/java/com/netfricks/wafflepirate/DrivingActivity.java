@@ -20,6 +20,16 @@ import android.widget.Toast;
 public class DrivingActivity extends AppCompatActivity {
 
     Switch drivingActivitySwitch;
+
+    // Permissions needed
+    String[] mAppPermissions = {Manifest.permission.READ_PHONE_STATE,
+                                    Manifest.permission.READ_SMS,
+                                    Manifest.permission.RECEIVE_SMS,
+                                    Manifest.permission.SEND_SMS};
+    // Manifest.permission.READ_PHONE_STATE
+    // Manifest.permission.READ_SMS
+    // Manifest.permission.RECEIVE_SMS
+    // Manifest.permission.SEND_SMS
     private static final int DRIVING_PERMISSION_REQUEST = 1;
 
     @Override
@@ -38,23 +48,36 @@ public class DrivingActivity extends AppCompatActivity {
         drivingActivitySwitch = (Switch) findViewById(R.id.switchActivityDriving);
 
         if (switchState == 1) {
-            getPermission(Manifest.permission.BLUETOOTH,DRIVING_PERMISSION_REQUEST);
+            getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
+
+
             drivingActivitySwitch.setChecked(true);
-            isBluetoothSupported();
-            // TODO: Show UI for Bluetooth Rules
+            if (HandleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
+                // TODO: Show UI for Bluetooth Rules
+            } else {
+                drivingActivitySwitch.setChecked(false);
+                setDrivingActivitySwitchState(0);
+            }
         }
 
         drivingActivitySwitch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 if (drivingActivitySwitch.isChecked()){
-                    // Check for Calendar Permission
-                    getPermission(Manifest.permission.BLUETOOTH,1);
+                    // Check for Driving Permissions
+                    getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
+
 
                     // Write to file
                     setDrivingActivitySwitchState(1);
 
-                    isBluetoothSupported();
+
+                    if (HandleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
+                        // TODO: Show UI for Bluetooth Rules
+                    } else {
+                        drivingActivitySwitch.setChecked(false);
+                        setDrivingActivitySwitchState(0);
+                    }
 
                     // TODO: Show UI for Bluetooth Rules
 
@@ -69,59 +92,89 @@ public class DrivingActivity extends AppCompatActivity {
         });
     }
 
-    public void isBluetoothSupported() {
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mBluetoothAdapter == null) {
-            // Device does not support Bluetooth
-            Toast.makeText(this, "Bluetooth not supported on this device.", Toast.LENGTH_SHORT).show();
-            drivingActivitySwitch.setChecked(false);
-            setDrivingActivitySwitchState(0);
-        }
-    }
+//    public void getPermissions(final String mAppPermission, final int permissionRequest) {
+    public void getPermissions(final String[] mAppPermissions, int permissionRequest) {
 
-    public void getPermission(final String permissionManifest, final int permissionRequest) {
-        if (ContextCompat.checkSelfPermission(this, permissionManifest) != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this, mAppPermissions, permissionRequest);
+
+        /*
+        if (ContextCompat.checkSelfPermission(this, mAppPermissions) != PackageManager.PERMISSION_GRANTED) {
 
             // Check if the user has been asked about this permission already and denied
             // it. If so, we want to give more explanation about why the permission is needed.
 
-            if (shouldShowRequestPermissionRationale(permissionManifest)){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, mAppPermissions)){
 
-                // Show UI to explain to the user why we need the bluetooth permission
+                // Show UI to explain to the user why we need the these permissions
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.dialog_message_BLUETOOTH)
-                        .setTitle(R.string.dialog_title_BLUETOOTH);
+                builder.setMessage(R.string.dialog_message_DRIVING_PERMISSIONS)
+                        .setTitle(R.string.dialog_title_DRIVING_PERMISSIONS);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked OK button
-                        requestPermissions(new String[]{permissionManifest},
-                                permissionRequest);
+                        ActivityCompat.requestPermissions(DrivingActivity.this, mAppPermissions,
+                                READ_PHONE_STATE_PERMISSION_REQUEST);
                     }
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+            } else {
+                ActivityCompat.requestPermissions(this, mAppPermissions,
+                        READ_PHONE_STATE_PERMISSION_REQUEST);
+            }
+        }
+        */
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case DRIVING_PERMISSION_REQUEST: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(this, "Missing permission(s) required to use this feature.\nPlease toggle switch again or go to Application Settings to grant.", Toast.LENGTH_LONG).show();
+
+                    // turn switch off.
+                    drivingActivitySwitch.setChecked(false);
+
+                    // Save switch status to off in preference file.
+                    setDrivingActivitySwitchState(0);
+                }
+                return;
             }
         }
     }
 
-    // Callback with the request from calling requestPermissions(...)
+    /*
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[],
                                            @NonNull int[] grantResults){
-        final SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
         // Make sure it's our original request
         if (requestCode == DRIVING_PERMISSION_REQUEST) {
+
             if (grantResults.length == 1 &&
                     grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show();
             } else {
                 // showRational = false if user clicks Never Ask Again, otherwise true
-                boolean showRational = shouldShowRequestPermissionRationale(Manifest.permission.BLUETOOTH);
+                // TODO: Figure this out, is returning false every time, even though permission is granted
+
+                boolean showRational = shouldShowRequestPermissionRationale(permissions[0]);
 
                 if (showRational) {
-                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Permission required to use this feature", Toast.LENGTH_SHORT).show();
 
                     // turn switch off.
                     drivingActivitySwitch.setChecked(false);
@@ -129,7 +182,7 @@ public class DrivingActivity extends AppCompatActivity {
                     // Save switch status to off in preference file.
                     setDrivingActivitySwitchState(0);
                 } else {
-                    Toast.makeText(this, "To enable this feature, go to Settings to allow permissions", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "To enable this feature, go to Settings and allow Phone & SMS permissions", Toast.LENGTH_LONG).show();
 
                     // turn switch off.
                     drivingActivitySwitch.setChecked(false);
@@ -142,6 +195,7 @@ public class DrivingActivity extends AppCompatActivity {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+    */
 
     public void setDrivingActivitySwitchState(int newState) {
 
