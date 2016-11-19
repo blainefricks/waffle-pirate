@@ -18,9 +18,15 @@
         android:text="Turn on"
         android:layout_width="match_parent"
         android:layout_height="48dp" />
-    <!-- TODO: Switch_on will need to check to see if BLUETOOTH permissions are missing or not. -->
-    <!-- TODO: Switch_on will need to check to see if SMS permissions are missing or not. -->
+
     <!-- TODO: Switch_on will display more options for driving feature. -->
     <!-- TODO: Switch_off will hide more options for driving feature. -->
+    <!--
+    <fragment
+        android:name="com.netfricks.wafflepirate.DrivingFragment"
+        android:id="@+id/driving_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" />
+        -->
 
 </RelativeLayout>
