@@ -10,4 +10,11 @@
     <string name="dialog_title_READ_CALENDAR">Missing Calendar Permission</string>
     <string name="dialog_message_DRIVING_PERMISSIONS">Access to your Messages is required to let people know you are driving. Access to your Phone is required to know when someone calls while you are driving.</string>
     <string name="dialog_title_DRIVING_PERMISSIONS">Missing Permissions</string>
+
+    <!--Driving Activity-->
+    <string name="switch_driving_activity">Enable driving mode</string>
+    <string name="text_driving_spinner_title">Select Car Bluetooth</string>
+    <string name="text_driving_spinner_description">Which of these devices is your car?</string>
+    <string name="text_driving_response_title">Custom Driving SMS Response</string>
+    <string name="text_driving_response_description">Let people who text you know you are driving with an automated SMS reply.</string>
 </resources>

@@ -14,12 +14,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
 public class DrivingActivity extends AppCompatActivity {
 
     Switch drivingActivitySwitch;
+    Spinner spinnerPairedDevices;
+    RelativeLayout layoutDrivingOptions;
 
     // Permissions needed
     String[] mAppPermissions = {Manifest.permission.READ_PHONE_STATE,
@@ -36,6 +41,9 @@ public class DrivingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving);
+
+        spinnerPairedDevices = (Spinner) findViewById(R.id.spinnerPairedDevices);
+        layoutDrivingOptions = (RelativeLayout) findViewById(R.id.layoutDrivingSettings);
 
         // Read preference file to get switch status
         final SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
@@ -55,6 +63,7 @@ public class DrivingActivity extends AppCompatActivity {
                 getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
 
                 // TODO: Show UI for Bluetooth Rules
+                displayDrivingActivitySettings(true);
             } else {
                 drivingActivitySwitch.setChecked(false);
                 setDrivingActivitySwitchState(0);
@@ -77,15 +86,19 @@ public class DrivingActivity extends AppCompatActivity {
                         getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
 
                         // TODO: Show UI for Bluetooth Rules
+                        displayDrivingActivitySettings(true);
                     } else {
                         drivingActivitySwitch.setChecked(false);
                         setDrivingActivitySwitchState(0);
                     }
 
                     // TODO: Show UI for Bluetooth Rules
+                    displayDrivingActivitySettings(true);
+
 
                 } else {
                     // TODO: Hide UI for Bluetooth Rules
+                    displayDrivingActivitySettings(false);
 
                     // Write to file
                     setDrivingActivitySwitchState(0);
@@ -208,6 +221,27 @@ public class DrivingActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.saved_driving_switch_state), newState);
         editor.commit();
+    }
+
+    public void displayDrivingActivitySettings(boolean toDisplay){
+
+        if (toDisplay) {
+            Toast.makeText(this, "Driving mode enabled, display options.", Toast.LENGTH_SHORT).show();
+            layoutDrivingOptions.setVisibility(View.VISIBLE);
+            /*
+            spinnerPairedDevices = (Spinner) findViewById(R.id.spinnerPairedDevices);
+            // Get array of paired devices from HandleBluetooth.getPairedDevices()
+            ArrayAdapter adapterPairedDevices = HandleBluetooth.getPairedDevices();
+            // Specify the layout to use when the list of choices appears
+            adapterPairedDevices.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // Apply the adapter to the spinner
+            spinnerPairedDevices.setAdapter(adapterPairedDevices);
+
+            */
+        } else {
+            Toast.makeText(this, "Driving mode disabled, hide options.", Toast.LENGTH_SHORT).show();
+            layoutDrivingOptions.setVisibility(View.INVISIBLE);
+        }
     }
 
 }

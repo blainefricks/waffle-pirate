@@ -15,18 +15,71 @@
 
     <Switch
         android:id="@+id/switchActivityDriving"
-        android:text="Turn on"
+        android:text="@string/switch_driving_activity"
         android:layout_width="match_parent"
         android:layout_height="48dp" />
 
     <!-- TODO: Switch_on will display more options for driving feature. -->
     <!-- TODO: Switch_off will hide more options for driving feature. -->
-    <!--
-    <fragment
-        android:name="com.netfricks.wafflepirate.DrivingFragment"
-        android:id="@+id/driving_fragment"
+
+    <RelativeLayout
+        android:id="@+id/layoutDrivingSettings"
+        android:visibility="invisible"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent" />
-        -->
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/switchActivityDriving"
+        >
+
+        <TextView
+            android:id="@+id/textViewPairedDevicesTitle"
+            android:text="@string/text_driving_spinner_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/textViewPairedDevicesDescription"
+            android:text="@string/text_driving_spinner_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewPairedDevicesTitle"
+            android:layout_marginTop="16dp" />
+
+        <Spinner
+            android:id="@+id/spinnerPairedDevices"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/textViewPairedDevicesDescription"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewDrivingResponseTitle"
+            android:text="@string/text_driving_response_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinnerPairedDevices"
+            android:textSize="18dp"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/textViewDrivingResponseDescription"
+            android:text="@string/text_driving_response_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDrivingResponseTitle"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/editTextCustomDrivingResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/textViewDrivingResponseDescription"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
