@@ -67,6 +67,7 @@ public class DrivingActivity extends AppCompatActivity {
             } else {
                 drivingActivitySwitch.setChecked(false);
                 setDrivingActivitySwitchState(0);
+                displayDrivingActivitySettings(false);
             }
         }
 
@@ -90,12 +91,9 @@ public class DrivingActivity extends AppCompatActivity {
                     } else {
                         drivingActivitySwitch.setChecked(false);
                         setDrivingActivitySwitchState(0);
+                        // TODO: Show UI for Bluetooth Rules
+                        displayDrivingActivitySettings(false);
                     }
-
-                    // TODO: Show UI for Bluetooth Rules
-                    displayDrivingActivitySettings(true);
-
-
                 } else {
                     // TODO: Hide UI for Bluetooth Rules
                     displayDrivingActivitySettings(false);
@@ -163,6 +161,9 @@ public class DrivingActivity extends AppCompatActivity {
                     // turn switch off.
                     drivingActivitySwitch.setChecked(false);
 
+                    // hide options
+                    displayDrivingActivitySettings(false);
+
                     // Save switch status to off in preference file.
                     setDrivingActivitySwitchState(0);
                 }
@@ -226,7 +227,6 @@ public class DrivingActivity extends AppCompatActivity {
     public void displayDrivingActivitySettings(boolean toDisplay){
 
         if (toDisplay) {
-            Toast.makeText(this, "Driving mode enabled, display options.", Toast.LENGTH_SHORT).show();
             layoutDrivingOptions.setVisibility(View.VISIBLE);
             /*
             spinnerPairedDevices = (Spinner) findViewById(R.id.spinnerPairedDevices);
@@ -239,7 +239,6 @@ public class DrivingActivity extends AppCompatActivity {
 
             */
         } else {
-            Toast.makeText(this, "Driving mode disabled, hide options.", Toast.LENGTH_SHORT).show();
             layoutDrivingOptions.setVisibility(View.INVISIBLE);
         }
     }
