@@ -13,8 +13,8 @@
 
     <!--Driving Activity-->
     <string name="switch_driving_activity">Enable driving mode</string>
-    <string name="text_driving_spinner_title">Select Car Bluetooth</string>
-    <string name="text_driving_spinner_description">Which of these devices is your car?</string>
+    <string name="text_driving_spinner_title">Connected Cars</string>
+    <string name="text_driving_spinner_description">Manage which connections are your car\'s Bluetooth</string>
     <string name="text_driving_response_title">Custom Driving SMS Response</string>
-    <string name="text_driving_response_description">Let people who text you know you are driving with an automated SMS reply.</string>
+    <string name="text_driving_response_description">Let people who text you know you are driving with an automated SMS reply</string>
 </resources>

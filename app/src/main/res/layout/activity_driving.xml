@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- TODO: Need layout for Driving Activity page -->
-<!-- TODO: On page load, if feature is enabled then check for missing permissions (BLUETOOTH, SMS). -->
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,9 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="48dp" />
 
-    <!-- TODO: Switch_on will display more options for driving feature. -->
-    <!-- TODO: Switch_off will hide more options for driving feature. -->
-
     <RelativeLayout
         android:id="@+id/layoutDrivingSettings"
         android:visibility="invisible"
@@ -36,7 +30,7 @@
             android:text="@string/text_driving_spinner_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/textViewPairedDevicesDescription"
@@ -59,16 +53,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinnerPairedDevices"
-            android:textSize="18dp"
-            android:layout_marginTop="24dp"/>
+            android:textSize="20sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:id="@+id/textViewDrivingResponseDescription"
             android:text="@string/text_driving_response_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewDrivingResponseTitle"
-            android:layout_marginTop="16dp" />
+            android:layout_below="@+id/textViewDrivingResponseTitle" />
 
         <EditText
             android:id="@+id/editTextCustomDrivingResponse"

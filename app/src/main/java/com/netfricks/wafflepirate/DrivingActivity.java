@@ -62,7 +62,7 @@ public class DrivingActivity extends AppCompatActivity {
 
                 getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
 
-                // TODO: Show UI for Bluetooth Rules
+                // Show UI for Bluetooth Rules
                 displayDrivingActivitySettings(true);
             } else {
                 drivingActivitySwitch.setChecked(false);
@@ -86,16 +86,16 @@ public class DrivingActivity extends AppCompatActivity {
 
                         getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
 
-                        // TODO: Show UI for Bluetooth Rules
+                        // Show UI for Bluetooth Rules
                         displayDrivingActivitySettings(true);
                     } else {
                         drivingActivitySwitch.setChecked(false);
                         setDrivingActivitySwitchState(0);
-                        // TODO: Show UI for Bluetooth Rules
+                        // Show UI for Bluetooth Rules
                         displayDrivingActivitySettings(false);
                     }
                 } else {
-                    // TODO: Hide UI for Bluetooth Rules
+                    // Hide UI for Bluetooth Rules
                     displayDrivingActivitySettings(false);
 
                     // Write to file
