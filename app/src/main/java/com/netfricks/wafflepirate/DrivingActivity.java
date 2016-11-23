@@ -56,18 +56,10 @@ public class DrivingActivity extends AppCompatActivity {
         drivingActivitySwitch = (Switch) findViewById(R.id.switchActivityDriving);
 
         if (switchState == 1) {
-
-            drivingActivitySwitch.setChecked(true);
             if (HandleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
-
-                getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
-
-                // Show UI for Bluetooth Rules
-                displayDrivingActivitySettings(true);
+                enableDrivingMode(true);
             } else {
-                drivingActivitySwitch.setChecked(false);
-                setDrivingActivitySwitchState(0);
-                displayDrivingActivitySettings(false);
+                enableDrivingMode(false);
             }
         }
 
@@ -75,32 +67,13 @@ public class DrivingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (drivingActivitySwitch.isChecked()){
-                    // Check for Driving Permissions
-
-
-                    // Write to file
-                    setDrivingActivitySwitchState(1);
-
-
                     if (HandleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
-
-                        getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
-
-                        // Show UI for Bluetooth Rules
-                        displayDrivingActivitySettings(true);
+                        enableDrivingMode(true);
                     } else {
-                        drivingActivitySwitch.setChecked(false);
-                        setDrivingActivitySwitchState(0);
-                        // Show UI for Bluetooth Rules
-                        displayDrivingActivitySettings(false);
+                        enableDrivingMode(false);
                     }
                 } else {
-                    // Hide UI for Bluetooth Rules
-                    displayDrivingActivitySettings(false);
-
-                    // Write to file
-                    setDrivingActivitySwitchState(0);
-
+                    enableDrivingMode(false);
                 }
             }
         });
@@ -148,24 +121,12 @@ public class DrivingActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
-
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
+                    // permission was granted, yay!
                 } else {
-
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                     Toast.makeText(this, "Missing permission(s) required to use this feature.\nPlease toggle switch again or go to Application Settings to grant.", Toast.LENGTH_LONG).show();
-
-                    // turn switch off.
-                    drivingActivitySwitch.setChecked(false);
-
-                    // hide options
-                    displayDrivingActivitySettings(false);
-
-                    // Save switch status to off in preference file.
-                    setDrivingActivitySwitchState(0);
+                    enableDrivingMode(false);
                 }
                 return;
             }
@@ -240,6 +201,19 @@ public class DrivingActivity extends AppCompatActivity {
             */
         } else {
             layoutDrivingOptions.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void enableDrivingMode(boolean enableMode) {
+        if(enableMode) {
+            getPermissions(mAppPermissions, DRIVING_PERMISSION_REQUEST);
+            setDrivingActivitySwitchState(1);
+            displayDrivingActivitySettings(true);
+            drivingActivitySwitch.setChecked(true);
+        } else {
+            setDrivingActivitySwitchState(0);
+            displayDrivingActivitySettings(false);
+            drivingActivitySwitch.setChecked(false);
         }
     }
 
