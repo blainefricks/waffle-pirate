@@ -10,6 +10,10 @@
     <string name="saved_driving_switch_state"></string>
     <string name="saved_driving_custom_sms_response_default">I\'m driving right now.</string>
     <string name="saved_driving_custom_sms_response"></string>
+    <string name="saved_driving_paired_device_name_default">None Selected</string>
+    <string name="saved_driving_paired_device_name"></string>
+    <string name="saved_driving_paired_device_address_default">None</string>
+    <string name="saved_driving_paired_device_address"></string>
 
 
 </resources>

@@ -20,11 +20,14 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class DrivingActivity extends AppCompatActivity {
 
     Switch drivingActivitySwitch;
     Spinner spinnerPairedDevices;
     RelativeLayout layoutDrivingOptions;
+    List pairedDevices;
 
     // Permissions needed
     String[] mAppPermissions = {Manifest.permission.READ_PHONE_STATE,
@@ -52,11 +55,21 @@ public class DrivingActivity extends AppCompatActivity {
         final int defaultValue = getResources().getInteger(R.integer.saved_driving_switch_state_default);
         long switchState = sharedPref.getInt(getString(R.string.saved_driving_switch_state), defaultValue);
 
+        final HandleBluetooth handleBluetooth = new HandleBluetooth();
+
+        // refresh device list
+        pairedDevices = handleBluetooth.getPairedDevices();
+        ArrayAdapter<String> adapterPairedDevices = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_dropdown_item, pairedDevices);
+        spinnerPairedDevices.setAdapter(adapterPairedDevices);
+
+//        handleBluetooth.saveCarBluetoothDeviceList(DrivingActivity.this, "Test Device Name", "00:AA:BB:CC:DD:11");
+
         // If the switch is off, only check for permission when the switch is turned on.
         drivingActivitySwitch = (Switch) findViewById(R.id.switchActivityDriving);
 
         if (switchState == 1) {
-            if (HandleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
+            if (handleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
                 enableDrivingMode(true);
             } else {
                 enableDrivingMode(false);
@@ -67,7 +80,7 @@ public class DrivingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (drivingActivitySwitch.isChecked()){
-                    if (HandleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
+                    if (handleBluetooth.isBluetoothSupported(DrivingActivity.this)) {
                         enableDrivingMode(true);
                     } else {
                         enableDrivingMode(false);
@@ -183,22 +196,13 @@ public class DrivingActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(getString(R.string.saved_driving_switch_state), newState);
         editor.commit();
+//        editor.apply();
     }
 
     public void displayDrivingActivitySettings(boolean toDisplay){
 
         if (toDisplay) {
             layoutDrivingOptions.setVisibility(View.VISIBLE);
-            /*
-            spinnerPairedDevices = (Spinner) findViewById(R.id.spinnerPairedDevices);
-            // Get array of paired devices from HandleBluetooth.getPairedDevices()
-            ArrayAdapter adapterPairedDevices = HandleBluetooth.getPairedDevices();
-            // Specify the layout to use when the list of choices appears
-            adapterPairedDevices.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            // Apply the adapter to the spinner
-            spinnerPairedDevices.setAdapter(adapterPairedDevices);
-
-            */
         } else {
             layoutDrivingOptions.setVisibility(View.INVISIBLE);
         }
