@@ -64,6 +64,7 @@ public class DrivingActivity extends AppCompatActivity {
         spinnerPairedDevices.setAdapter(adapterPairedDevices);
 
 //        handleBluetooth.saveCarBluetoothDeviceList(DrivingActivity.this, "Test Device Name", "00:AA:BB:CC:DD:11");
+        saveCarBluetoothDeviceList("Test Device Name", "00:AA:BB:CC:DD:11");
 
         // If the switch is off, only check for permission when the switch is turned on.
         drivingActivitySwitch = (Switch) findViewById(R.id.switchActivityDriving);
@@ -219,6 +220,22 @@ public class DrivingActivity extends AppCompatActivity {
             displayDrivingActivitySettings(false);
             drivingActivitySwitch.setChecked(false);
         }
+    }
+
+    public void saveCarBluetoothDeviceList(String newDeviceName, String newDeviceAddress) {
+
+        // NOTE: This doesn't work when called from HandleBluetooth.java
+        // TODO: Get a handle on list
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
+        // TODO: Update list with selected devices
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.saved_driving_paired_device_name), newDeviceName);
+        editor.putString(getString(R.string.saved_driving_paired_device_address), newDeviceAddress);
+        editor.commit();
+//        editor.apply();
+        Toast.makeText(this, "Device Name: "+newDeviceName+", Device Address: "+newDeviceAddress, Toast.LENGTH_LONG).show();
+
     }
 
 }

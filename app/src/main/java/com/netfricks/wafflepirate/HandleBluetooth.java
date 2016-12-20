@@ -64,6 +64,8 @@ public class HandleBluetooth extends AppCompatActivity {
 
     // TODO: Save list of car bluetooth devices
     public void saveCarBluetoothDeviceList(Context context, String newDeviceName, String newDeviceAddress) {
+
+        // NOTE: The shared preferences part of this function crashes the app
         // TODO: Get a handle on list
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key),Context.MODE_PRIVATE);
 
