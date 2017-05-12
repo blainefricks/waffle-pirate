@@ -2,7 +2,7 @@
 
 <!-- TODO: Need layout for Main Activity page -->
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,14 +18,28 @@
     <!--</ListView>-->
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonViewActivityDriving"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:text="Driving Settings"
         android:onClick="viewActivityDriving" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonViewActivityCalendar"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:text="Calendar Settings"
-        android:onClick="viewActivityCalendar" />
-</LinearLayout>
+        android:onClick="viewActivityCalendar"
+        android:layout_below="@+id/buttonViewActivityDriving" />
+
+    <TextView
+        android:id="@+id/textViewAppVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_version"
+        android:textSize="14sp"
+        android:paddingTop="16dp"
+        android:textAlignment="center"
+        android:layout_below="@+id/buttonViewActivityCalendar" />
+
+</RelativeLayout>
